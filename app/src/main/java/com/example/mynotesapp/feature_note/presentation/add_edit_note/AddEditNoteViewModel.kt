@@ -33,14 +33,14 @@ class AddEditNoteViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<UiEvent>()
     val eventFlow = _eventFlow.asSharedFlow()
 
-    private var currentNodeId: Int? = null
+    private var currentNoteId: Int? = null
 
     init {
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
             if (noteId != -1) {
                 viewModelScope.launch {
                     useCases.getNoteUseCase(noteId)?.also { note ->
-                        currentNodeId = note.id
+                        currentNoteId = note.id
                         _noteTitle.value = noteTitle.value.copy(
                             text = note.title,
                             isHintVisible = false
@@ -92,7 +92,7 @@ class AddEditNoteViewModel @Inject constructor(
                                 content = noteContent.value.text,
                                 timestamp = System.currentTimeMillis(),
                                 color = noteColor.value,
-                                id = currentNodeId
+                                id = currentNoteId
                             )
                         )
                         _eventFlow.emit(UiEvent.SaveNote)

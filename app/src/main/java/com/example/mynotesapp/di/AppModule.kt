@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.room.Room
 import com.example.mynotesapp.feature_note.data.data_source.NoteDatabase
 import com.example.mynotesapp.feature_note.data.repository.NoteRepositoryImpl
-import com.example.mynotesapp.feature_note.domain.model.Note
 import com.example.mynotesapp.feature_note.domain.repository.NoteRepository
 import com.example.mynotesapp.feature_note.domain.use_case.*
 import dagger.Module
